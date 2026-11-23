@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas Melódico Climático — Tone.js</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <main class="main-panel">
+      <header class="top-bar">
+        <div>
+          <h1>PAISAJE SONORO</h1>
+          <p class="subtitle">Agrega ubicaciones por ciudad, Lat/Lon, GPS o clic en el mapa; escúchalas solas o mézclalas</p>
+        </div>
+        <div class="global-controls">
+          <button id="gps-btn" class="btn-secondary">+ Mi Ubicación</button>
+          <button id="mix-btn" class="btn-primary">Mezclar Todas</button>
+          <button id="stop-btn" class="btn-warn">Detener</button>
+          <button id="clear-all-btn" class="btn-danger">Borrar Todas</button>
+        </div>
+      </header>
+
+      <!-- Mapa -->
+      <div id="map"></div>
+
+      <!-- Agregar nueva ubicación -->
+      <section class="add-location-card">
+        <div class="add-header">
+          <strong>AGREGAR NUEVA UBICACIÓN</strong>
+          <span id="status-text" class="status-text">Listo para agregar nodos</span>
+        </div>
+
+        <div class="input-row">
+          <input type="text" id="city-input" placeholder="Buscar ciudad (ej. Guasave, Guadalajara, Tokio)..." />
+          <button id="add-city-btn" class="btn-accent">+ Agregar Ciudad</button>
+        </div>
+
+        <div class="input-row coords-row">
+          <input type="number" step="any" id="lat-input" placeholder="Latitud (ej. 25.565)" />
+          <input type="number" step="any" id="lon-input" placeholder="Longitud (ej. -108.469)" />
+          <button id="add-coords-btn" class="btn-secondary">+ Agregar Lat/Lon</button>
+        </div>
+      </section>
+
+      <!-- Lista dinámica de ubicaciones -->
+      <section class="locations-section">
+        <div class="section-title-row">
+          <h2>Ubicaciones Activas (<span id="locations-count">0</span>)</h2>
+          <small>Haz clic en el mapa para agregar un punto rápido</small>
+        </div>
+        <div id="locations-grid" class="locations-grid"></div>
+      </section>
+
+      <!-- Controles de mezcla y ritmo -->
+      <section class="mixer-panel">
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Suave</span>
+            <strong id="balance-label">Volumen / Intensidad: 75%</strong>
+            <span>Fuerte</span>
+          </div>
+          <input type="range" id="balance-slider" min="10" max="100" value="75" />
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Lento</span>
+            <strong id="speed-label">Normal (450 ms)</strong>
+            <span>Rápido</span>
+          </div>
+          <input type="range" id="speed-slider" min="150" max="900" step="50" value="450" />
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
